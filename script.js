@@ -69,11 +69,10 @@ const todoData = [
   // { title: "ochih", date: "2024-12-09", state: "todo" },
 ];
 
-const inData = [];
-
-const doneData = [];
-
-const blockedData = [];
+// add task heseg
+function addTask() {
+  const input = document.querySelector("#input");
+}
 
 function addTaskList(title, color, count, id) {
   const taskContainer2 = document.querySelector("#taskContainer");

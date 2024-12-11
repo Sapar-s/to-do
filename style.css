@@ -12,6 +12,7 @@ body {
 .addTask {
   display: flex;
   flex-direction: row-reverse;
+  gap: 10px;
   margin-bottom: 20px;
 }
 .addTask button {
