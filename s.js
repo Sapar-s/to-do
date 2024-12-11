@@ -1,9 +1,9 @@
 let todos = ["geree tseverleh", "hool hiih", "hicheel hiih", "kino uzeh"];
 const button = document.getElementById("button");
 const input = document.getElementById("input");
-input.addEventListener("input", (event) => {
-  console.log(event.target.value);
-});
+// input.addEventListener("input", (event) => {
+//   console.log(event.target.value);
+// });
 button.addEventListener("click", () => {
   if (!input.value) {
     errorHanding();
