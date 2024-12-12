@@ -70,9 +70,20 @@ const todoData = [
 ];
 
 // add task heseg
-function addTask() {
-  const input = document.querySelector("#input");
-}
+const button = document.querySelector("#btn");
+const input = document.querySelector("#input");
+button.addEventListener("click", () => {
+  if (!input.value) {
+    errorHanding();
+    return;
+  } else {
+    errorRemove();
+    todoData.push(input.value);
+    input.value = null;
+  }
+});
+// function addTask() {
+// }
 
 function addTaskList(title, color, count, id) {
   const taskContainer2 = document.querySelector("#taskContainer");
@@ -94,15 +105,12 @@ function addTaskList(title, color, count, id) {
   taskContainer2.appendChild(todoList);
 }
 
-const listItems = document.createElement("div");
-listItems.setAttribute("class", "listItems");
-
 function lists(title, date, state) {
   const cal = document.querySelector(`#${state}`);
 
   const listItem = document.createElement("div");
   listItem.setAttribute("class", "listItem");
-  listItems.appendChild(listItem);
+  cal.appendChild(listItem);
 
   const listItemP = document.createElement("p");
   listItemP.innerText = title;
@@ -114,7 +122,7 @@ function lists(title, date, state) {
 
   containerItems.map((arr) => {
     let option = document.createElement("option");
-    option.innerText = arr.id;
+    option.innerText = state;
     select.appendChild(option);
   });
 
@@ -135,12 +143,13 @@ containerItems.map((item) => {
 todoData.map((item) => {
   lists(item.title, item.date, item.state);
 });
-inData.map((item) => {
-  lists(item.title, item.date, item.state);
-});
-doneData.map((item) => {
-  lists(item.title, item.date, item.state);
-});
-blockedData.map((item) => {
-  lists(item.title, item.date, item.state);
-});
+
+function errorHanding() {
+  const p = document.getElementById("error");
+  p.innerText = "Aldaa Garlaa ! ";
+}
+
+function errorRemove() {
+  const p = document.getElementById("error");
+  p.innerText = null;
+}
