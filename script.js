@@ -70,9 +70,33 @@ const todoData = [
 ];
 
 // add task heseg
-function addTask() {
-  const input = document.querySelector("#input");
-}
+const button = document.querySelector("#btn");
+const input = document.querySelector("#input");
+button.addEventListener("click", () => {
+  if (!input.value) {
+    errorHanding();
+    return;
+  } else {
+    errorRemove();
+    todoData.push(input.value);
+    input.value = null;
+  }
+});
+
+// const addTask = () => {
+//   if (input.value) {
+//     todoData.push({
+//       title: input.value,
+//       date: "2024-12-12",
+//       state: "todo",
+//     });
+//     input.value = null;
+//     // clearContainers();
+//     todoData.map((item, index) => {
+//       renderTodoItems(item.title, item.date, item.state, index);
+//     });
+//   }
+// };
 
 function addTaskList(title, color, count, id) {
   const taskContainer2 = document.querySelector("#taskContainer");
@@ -94,15 +118,12 @@ function addTaskList(title, color, count, id) {
   taskContainer2.appendChild(todoList);
 }
 
-const listItems = document.createElement("div");
-listItems.setAttribute("class", "listItems");
-
 function lists(title, date, state) {
   const cal = document.querySelector(`#${state}`);
 
   const listItem = document.createElement("div");
   listItem.setAttribute("class", "listItem");
-  listItems.appendChild(listItem);
+  cal.appendChild(listItem);
 
   const listItemP = document.createElement("p");
   listItemP.innerText = title;
@@ -114,7 +135,7 @@ function lists(title, date, state) {
 
   containerItems.map((arr) => {
     let option = document.createElement("option");
-    option.innerText = arr.id;
+    option.innerText = state;
     select.appendChild(option);
   });
 
@@ -132,15 +153,33 @@ containerItems.map((item) => {
   addTaskList(item.title, item.color, item.count, item.id);
 });
 
-todoData.map((item) => {
-  lists(item.title, item.date, item.state);
+todoData.map((item, index) => {
+  lists(item.title, item.date, item.state, index);
 });
-inData.map((item) => {
-  lists(item.title, item.date, item.state);
-});
-doneData.map((item) => {
-  lists(item.title, item.date, item.state);
-});
-blockedData.map((item) => {
-  lists(item.title, item.date, item.state);
-});
+
+function errorHanding() {
+  const p = document.getElementById("error");
+  p.innerText = "Aldaa Garlaa ! ";
+}
+
+function errorRemove() {
+  const p = document.getElementById("error");
+  p.innerText = null;
+}
+
+const addTask = () => {
+  if (input.value) {
+    todoData.push({
+      title: input.value,
+      date: "2024-12-12",
+      state: "todo",
+    });
+    input.value = null;
+    // clearContainers();
+    todoData.map((item, index) => {
+      lists(item.title, item.date, item.state, index);
+    });
+  }
+};
+
+button.addEventListener("click", addTask);
