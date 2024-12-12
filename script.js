@@ -82,8 +82,21 @@ button.addEventListener("click", () => {
     input.value = null;
   }
 });
-// function addTask() {
-// }
+
+// const addTask = () => {
+//   if (input.value) {
+//     todoData.push({
+//       title: input.value,
+//       date: "2024-12-12",
+//       state: "todo",
+//     });
+//     input.value = null;
+//     // clearContainers();
+//     todoData.map((item, index) => {
+//       renderTodoItems(item.title, item.date, item.state, index);
+//     });
+//   }
+// };
 
 function addTaskList(title, color, count, id) {
   const taskContainer2 = document.querySelector("#taskContainer");
@@ -140,8 +153,8 @@ containerItems.map((item) => {
   addTaskList(item.title, item.color, item.count, item.id);
 });
 
-todoData.map((item) => {
-  lists(item.title, item.date, item.state);
+todoData.map((item, index) => {
+  lists(item.title, item.date, item.state, index);
 });
 
 function errorHanding() {
@@ -153,3 +166,20 @@ function errorRemove() {
   const p = document.getElementById("error");
   p.innerText = null;
 }
+
+const addTask = () => {
+  if (input.value) {
+    todoData.push({
+      title: input.value,
+      date: "2024-12-12",
+      state: "todo",
+    });
+    input.value = null;
+    // clearContainers();
+    todoData.map((item, index) => {
+      lists(item.title, item.date, item.state, index);
+    });
+  }
+};
+
+button.addEventListener("click", addTask);

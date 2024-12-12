@@ -40,12 +40,20 @@ const btnP = document.getElementById("btnP");
 const btnm = document.getElementById("btnM");
 let p = document.getElementById("p");
 
-p = 0;
+// p = 5;
 
-function plus() {
-  for (let i = 0; i <= p + 1; i++) {
-    p += i;
-  }
-}
+// function plus() {
 
-btnP.addEventListener("click", plus());
+//     p += i;
+
+btnP.addEventListener("click", () => {
+  let x = Number(p.innerText);
+  x = x + 1;
+  p.innerText = x;
+});
+
+btnm.addEventListener("click", () => {
+  let x = Number(p.innerText);
+  x = x - 1;
+  p.innerText = x;
+});
